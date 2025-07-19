@@ -22,8 +22,9 @@ function checkGameOver() {
     inputField.value = '';
     let currentBlur = parseFloat(getComputedStyle(testHeading).filter.match(/blur\((.+)px\)/)?.[1] || 0);
     testHeading.style.filter = `blur(${currentBlur + 0.5}px)`;
-    let currentSize = parseInt(getComputedStyle(testHeading).fontSize);
-    testHeading.style.fontSize = (currentSize - 10) + 'px';
+    let currentSize = parseFloat(getComputedStyle(testHeading).fontSize);
+    let newSize = (currentSize * 72 / 96) - 10; // Convert px to pt and subtract 10
+    testHeading.style.fontSize = `${newSize}pt`;
     totalRounds--;
     if (totalRounds <= 0) {
         inputField.style.display = 'none';
